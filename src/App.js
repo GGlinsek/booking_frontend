@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import ButtonList from "./components/button-list/button-list.component";
 import Table from "./components/table/table.component";
-import DatePicker from "./components/datepicker/date-picker.component";
 import BookingModal from "./components/booking-modal/booking-modal.component";
+import WeekPicker from "./components/datepicker/date-picker.component";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Stack, ToggleButtonGroup } from "react-bootstrap";
+import "./App.css";
+import ToggleButtonGroupUncontrolled from "./components/button-list/button-list.component";
 
 const App = () => {
   const [coachAvailabilities, setCoachAvailabilities] = useState([]);
@@ -13,9 +19,8 @@ const App = () => {
   const [filteredAvailability, setFilteredAvailability] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [show, setShow] = useState(false);
-  const [tick, setTick] =useState(false)
+  const [tick, setTick] = useState(false);
   const handleClose = () => setShow(false);
-  
 
   useEffect(() => {
     // Fetch coach availabilities from the API
@@ -76,7 +81,7 @@ const App = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setTick(!tick)
+        setTick(!tick);
       })
       .catch((err) => {
         console.log(err.message);
@@ -88,16 +93,6 @@ const App = () => {
     setShow(true);
   };
 
-  const handleJumpToCurrentWeek = (currenDate) => {
-    setStartDate(null);
-    getDaysOfWeek();
-  };
-
-  const handleWeekPick = (startDate, endDate) => {
-    setStartDate(new Date(startDate));
-  };
-
-  // Function to generate an array of all days in the week
   const getDaysOfWeek = () => {
     let startOfWeek;
     if (startDate !== null) {
@@ -116,7 +111,6 @@ const App = () => {
       const date = new Date(startOfWeek);
       date.setDate(startOfWeek.getDate() + i);
       const formattedDate = date.toLocaleDateString("en-US", {
-        weekday: "long",
         month: "numeric",
         day: "numeric",
         year: "numeric",
@@ -136,29 +130,43 @@ const App = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-      <BookingModal
-        show={show}
-        handleClose={handleClose}
-        bookingRequest={bookingRequest}
-        timeSlot={timeSlot}
-      />
-      <h2>Coach Schedule</h2>
-      <DatePicker
-        handleJumpToCurrentWeek={handleJumpToCurrentWeek}
-        handleWeekPick={handleWeekPick}        
-      />
-      <ButtonList coaches={coaches} onClickHandler={onClickHandler} />
-      <Table
-        filteredAvailability={filteredAvailability}
-        selectedCoach={selectedCoach}
-        daysOfWeek={getDaysOfWeek()}
-        bookings={bookings}
-        startDate={startDate}
-        handleShow={handleShow}
-      />
-    </div>
+    <Container fluid>
+      <Row>
+        <Col sm={3}></Col>
+        <Col sm={9}>
+          <h2 style={{ textAlign: "center" }}>Coach Schedule</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={3}>
+          <BookingModal
+            show={show}
+            handleClose={handleClose}
+            bookingRequest={bookingRequest}
+            timeSlot={timeSlot}
+          />
+          <WeekPicker setStartDate={setStartDate} />
+          <h5 style={{ textAlign: "center" }}>Select a Coach</h5>
+
+          <ButtonList coaches={coaches} onClickHandler={onClickHandler} />
+        </Col>
+        <Col sm={9}>
+          <Table
+            filteredAvailability={filteredAvailability}
+            selectedCoach={selectedCoach}
+            daysOfWeek={getDaysOfWeek()}
+            bookings={bookings}
+            startDate={startDate}
+            handleShow={handleShow}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
 export default App;
+
+/*
+
+*/

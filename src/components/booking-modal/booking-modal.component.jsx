@@ -7,22 +7,26 @@ const BookingModal = ({ show, handleClose, bookingRequest, timeSlot }) => {
   const [formDataName, setFormDataName] = useState("");
   const [formDataEmail, setFormDataEmail] = useState("");
   const { date, time } = timeSlot;
-  
 
   const handleBookingRequest = () => {
     handleClose();
-    bookingRequest({name: formDataName, email: formDataEmail, timeSlot: timeSlot });
+    bookingRequest({
+      name: formDataName,
+      email: formDataEmail,
+      timeSlot: timeSlot,
+    });
   };
 
   const handleEmailInputChange = (e) => {
-    const emailInput = e.target.value
-    setFormDataEmail(emailInput)
+    const emailInput = e.target.value;
+    setFormDataEmail(emailInput);
   };
 
   const handleNameInputChange = (e) => {
-    const nameInput = e.target.value
-    setFormDataName(nameInput)
+    const nameInput = e.target.value;
+    setFormDataName(nameInput);
   };
+  //console.log(new Date(time))
 
   return (
     <Modal
@@ -34,18 +38,27 @@ const BookingModal = ({ show, handleClose, bookingRequest, timeSlot }) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Book for {date} at {time}
+          Book on {date} at {time}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="name" placeholder="" autoFocus onChange={handleNameInputChange} />
+            <Form.Control
+              type="name"
+              placeholder=""
+              autoFocus
+              onChange={handleNameInputChange}
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="name@example.com" onChange={handleEmailInputChange} />
+            <Form.Control
+              type="email"
+              placeholder="name@example.com"
+              onChange={handleEmailInputChange}
+            />
           </Form.Group>
         </Form>
       </Modal.Body>

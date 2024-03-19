@@ -1,4 +1,5 @@
 import TableRow from "../table-row/table-row.component";
+import './table.styles.css'
 
 const Table = ({
   filteredAvailability,
@@ -19,7 +20,7 @@ const Table = ({
 
     return (
       <div>
-        <table>
+        <table className="table-component">
           <thead>
             <tr>
               <th>Time</th>
@@ -29,7 +30,7 @@ const Table = ({
                     key={index}
                     style={{ border: "1px solid black", textAlign: "center" }}
                   >
-                    {date}
+                    {name}<br/>{date}
                   </th>
                 );
               })}

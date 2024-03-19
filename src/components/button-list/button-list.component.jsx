@@ -1,16 +1,21 @@
-import Button from "react-bootstrap/Button";
-//import CoachButton from "../coach-button/coach-button.component";
+import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import "./button-list.styles.css"
+
 
 const ButtonList = ({ coaches, onClickHandler }) => {
-  return coaches.map((coach) => {
+
+  return (<div className="button-list"><ToggleButtonGroup  vertical type="radio" name="options">{coaches.map((coach) => {
     const { id, name } = coach;
     return (
-        <Button key={id} onClick={() => onClickHandler(id)}>
-          {name}
-        </Button>
-        //<CoachButton coach={coach} onClickHandler={onClickHandler} />
+      <ToggleButton className="button"
+        id={`tbg-radio-${id}`}
+        value={id}
+        onClick={() => onClickHandler(id)}
+      >
+        {name}
+      </ToggleButton>    
     );
-  });
+  })}</ToggleButtonGroup></div>)
 };
 
 export default ButtonList;
