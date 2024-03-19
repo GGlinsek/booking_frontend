@@ -6,9 +6,7 @@ import WeekPicker from "./components/datepicker/date-picker.component";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Stack, ToggleButtonGroup } from "react-bootstrap";
 import "./App.css";
-import ToggleButtonGroupUncontrolled from "./components/button-list/button-list.component";
 
 const App = () => {
   const [coachAvailabilities, setCoachAvailabilities] = useState([]);
