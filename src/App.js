@@ -132,25 +132,20 @@ const App = () => {
   return (
     <Container fluid>
       <Row>
-        <Col sm={3}></Col>
-        <Col sm={9}>
-          <h2 style={{ textAlign: "center" }}>Coach Schedule</h2>
-        </Col>
-      </Row>
-      <Row>
-        <Col sm={3}>
+        <Col sm={3} className="divider vertical-align">
           <BookingModal
             show={show}
             handleClose={handleClose}
             bookingRequest={bookingRequest}
             timeSlot={timeSlot}
           />
-          <WeekPicker setStartDate={setStartDate} />
-          <h5 style={{ textAlign: "center" }}>Select a Coach</h5>
+          <div className="week-picker"><WeekPicker setStartDate={setStartDate} /></div>
+          <h5 className="title site-padding">Select a Coach</h5>
 
           <ButtonList coaches={coaches} onClickHandler={onClickHandler} />
         </Col>
-        <Col sm={9}>
+        <Col sm={9} className="site-padding table-overflow">
+          <h2 className="title">Coach Schedule</h2>
           <Table
             filteredAvailability={filteredAvailability}
             selectedCoach={selectedCoach}

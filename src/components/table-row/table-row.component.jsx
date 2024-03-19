@@ -10,7 +10,7 @@ const TableRow = ({
 }) => {
   return (
     <tr key={index}>
-      <td style={{border: "1px solid black"}}>{timeSlot}</td>
+      <td className="table-universal">{timeSlot}</td>
       {daysOfWeek.map(({name, date}) => {
         const availabilitiesForDay = filteredAvailability.filter(
           (avail) => avail.day_of_week === name

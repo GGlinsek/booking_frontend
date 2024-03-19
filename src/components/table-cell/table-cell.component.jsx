@@ -1,18 +1,16 @@
-import Tooltip from "@mui/material/Tooltip";
+import "./table-cell-styles.css"
 
 const TableCell = ({ isAvailable, isBooked, handleShow, date, time }) => {
   const handleClick = () => {
-    if (isAvailable || isBooked) {
+    if (isAvailable && !isBooked) {
       handleShow({ date, time });
     }
   };
 
   return (
-    //<Tooltip disableFocusListener disableTouchListener title={time} arrow>
     <td
+      className="cell"
       style={{
-        border: "1px solid black",
-        textAlign: "center",
         backgroundColor: isBooked
           ? "red"
           : isAvailable
@@ -21,7 +19,6 @@ const TableCell = ({ isAvailable, isBooked, handleShow, date, time }) => {
       }}
       onClick={handleClick}
     ></td>
-    //</Tooltip>
   );
 };
 

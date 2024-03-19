@@ -10,7 +10,7 @@ const Table = ({
   handleShow,
 }) => {
   if (selectedCoach === null) {
-    return <div>Select a coach to view availability</div>;
+    return <div></div>;
   } else {
     const timeSlots = Array.from(Array(48), (_, index) => {
       const hour = Math.floor(index / 2);
@@ -23,12 +23,12 @@ const Table = ({
         <table className="table-component">
           <thead>
             <tr>
-              <th>Time</th>
+              <th className="table-universal">Time</th>
               {daysOfWeek.map(({ name, date }, index) => {
                 return (
                   <th
                     key={index}
-                    style={{ border: "1px solid black", textAlign: "center" }}
+                    className="table-universal"
                   >
                     {name}<br/>{date}
                   </th>
